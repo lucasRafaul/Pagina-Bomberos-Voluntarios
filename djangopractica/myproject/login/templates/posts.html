@@ -1,0 +1,26 @@
+{% load social_share %}
+<h1>Noticias/Posts</h1>
+{% for noticia in noticias %}
+    <div>
+        <h1>{{noticia.titulo}}</h1>
+        <h2>{{noticia.contenido}}</h2>
+        <p>{{noticia.categoria}}</p>
+        <p>{{noticia.fecha_pub}}</p>
+        {% if noticia.imagen %}
+        <img src="{{noticia.imagen.url}}">
+        {% endif %}
+        {% if not noticia.comentarios.all %}
+            no comentarios...
+        {% else %}
+            {% for comentario in noticia.comentarios.all %}
+                <strong>
+                    {{comentario.nombre}}: <br>
+                    {{comentario.contenido}}
+                    {{comentario.fecha_pub}}
+                </strong>
+            {% endfor %}
+        {% endif %}
+        {% post_to_facebook object_or_url "Post to Facebook!" %}
+    </div>
+
+{% endfor %}
