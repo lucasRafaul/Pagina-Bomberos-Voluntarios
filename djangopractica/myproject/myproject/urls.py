@@ -24,6 +24,7 @@ urlpatterns = [
     path('', views.landing),
     path('blog/', views.create_post),
     path('posts/', views.posts),
+    #path('comentar/', views.addComentario),
     #path('images/', views.noticias),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

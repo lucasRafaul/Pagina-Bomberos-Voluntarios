@@ -29,6 +29,7 @@ class Noticia(models.Model):
 
 
 class Comentario(models.Model):
+    id = models.AutoField(primary_key=True)
     noticia = models.ForeignKey(
         Noticia, related_name='comentarios', on_delete=models.CASCADE)
     nombre = models.CharField(max_length=255)

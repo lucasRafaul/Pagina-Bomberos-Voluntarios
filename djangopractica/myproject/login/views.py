@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.views.generic import CreateView
+from django.views.generic.edit import FormView
 from .models import *
 from .forms import *
+from django.urls import reverse_lazy
+
 
 # Create your views here.
 
@@ -12,10 +16,6 @@ def landing(request):
 
 def login(request):
     return render(request, 'login.html')
-
-
-def playground(request):
-    return render(request, 'playground.html')
 
 
 def create_post(request):
@@ -34,17 +34,14 @@ def create_post(request):
 
 def posts(request):
     noticias = Noticia.objects.all()
+    comentarios = Comentario.objects.all()
     return render(request, 'posts.html', {
         'noticias': noticias,
+        'comentarios': comentarios,
     })
 
 
-# def crearPost(request):
-    # if request.method == 'POST':
-    #post_form = CrearNoticia(request.POST or None, request.FILES or None)
-    # if post_form.is_valid():
-    # post_form.save()
-    # return redirect('posts')
-    # else:
-    #post_form = CrearNoticia()
-    # return render(request, 'blog.html', {'post_form': post_form})
+# def addComentario(CreateView):
+    #model = Comentario
+    #template_name = 'comentar.html'
+    #fields = '_all_'
